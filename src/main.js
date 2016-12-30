@@ -35,7 +35,7 @@ var system = System.new();
 var view = View.new();
 var renderer = null;
 var needReset = false;
-
+//---->
 var renderContainer;
 
 function loadStructure(data) {
