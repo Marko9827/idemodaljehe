@@ -18,7 +18,7 @@ window.onerror = function(e, url, line) {
     var error = document.getElementById("error");
     error.style.display = "block";
     var error = document.getElementById("error-text");
-    error.innerHTML = "Sorry, an error has occurred:<br><br>Line #" + line + ": " + e;
+    error.innerHTML = "Žao mi je, došlo je do greške:<br><br>Linija #" + line + ": " + e;
 }
 
 kb.active = function(key) {
