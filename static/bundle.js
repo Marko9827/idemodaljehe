@@ -9755,8 +9755,8 @@ return jQuery;
 			var api = {}, callbacks, cI, bI;
 
 			//validate event name
-			if(typeof eventName !== 'string') { throw new Error('Cannot bind callback. The event name must be a string.'); }
-			if(eventName !== 'keyup' && eventName !== 'keydown') { throw new Error('Cannot bind callback. The event name must be a "keyup" or "keydown".'); }
+			if(typeof eventName !== 'string') { throw new Error('Ne može da se veže povratni poziv. Ime događaja mora biti string.'); }
+			if(eventName !== 'keyup' && eventName !== 'keydown') { throw new Error('Ne može da se veže povratni poziv. Ime događaj mora biti "keyup" ili "keydown".'); }
 
 			//gather the callbacks
 			callbacks = Array.prototype.slice.apply(arguments, [1]);
