@@ -1,4 +1,4 @@
-(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({"/home/rye/Dropbox/src/speck/node_modules/jquery/dist/jquery.js":[function(require,module,exports){
+(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Ne mogu naći modul'"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({"/home/rye/Dropbox/src/speck/node_modules/jquery/dist/jquery.js":[function(require,module,exports){
 /*!
  * jQuery JavaScript Library v2.1.3
  * http://jquery.com/
@@ -27,7 +27,7 @@
 			factory( global, true ) :
 			function( w ) {
 				if ( !w.document ) {
-					throw new Error( "jQuery requires a window with a document" );
+					throw new Error( "jQuery zahteva prozor sa dokumentom" );
 				}
 				return factory( w );
 			};
@@ -9619,10 +9619,10 @@ return jQuery;
 	 */
 	function createMacro(combo, injectedKeys) {
 		if(typeof combo !== 'string' && (typeof combo !== 'object' || typeof combo.push !== 'function')) {
-			throw new Error("Cannot create macro. The combo must be a string or array.");
+			throw new Error("Ne mogu da kreiram macro. Kombinovani mora biti niz ili niz2.");
 		}
 		if(typeof injectedKeys !== 'object' || typeof injectedKeys.push !== 'function') {
-			throw new Error("Cannot create macro. The injectedKeys must be an array.");
+			throw new Error("Ne mogu da kreiram macro. Kombinovani mora biti niz ili niz2.");
 		}
 		macros.push([combo, injectedKeys]);
 	}
@@ -9634,7 +9634,8 @@ return jQuery;
 	 */
 	function removeMacro(combo) {
 		var macro;
-		if(typeof combo !== 'string' && (typeof combo !== 'object' || typeof combo.push !== 'function')) { throw new Error("Cannot remove macro. The combo must be a string or array."); }
+		if(typeof combo !== 'string' && (typeof combo !== 'object' || typeof combo.push !== 'function')) { 
+			throw new Error("Ne mogu ukloniti macro. Kombinovani mora biti niz ili niz2."); }
 		for(mI = 0; mI < macros.length; mI += 1) {
 			macro = macros[mI];
 			if(compareCombos(combo, macro[0])) {
@@ -9713,7 +9714,7 @@ return jQuery;
 			subCombo = stringifyKeyCombo([keyCombo[kI]]);
 
 			//validate the sub combo
-			if(typeof subCombo !== 'string') { throw new Error('Failed to bind key combo. The key combo must be string.'); }
+			if(typeof subCombo !== 'string') { throw new Error('Nije uspela da veže kombinacija tastera. Ključ kombinovani mora biti niska.'); }
 
 			//create the binding
 			binding.keyCombo = subCombo;
@@ -10000,7 +10001,8 @@ return jQuery;
 		var s = keyCombo, i = 0, op = 0, ws = false, nc = false, combos = [], combo = [], stage = [], key = '';
 
 		if(typeof keyCombo === 'object' && typeof keyCombo.push === 'function') { return keyCombo; }
-		if(typeof keyCombo !== 'string') { throw new Error('Cannot parse "keyCombo" because its type is "' + (typeof keyCombo) + '". It must be a "string".'); }
+		if(typeof keyCombo !== 'string') { throw new Error('Ne mogu analizirati "keyCombo" jer je njegova tip je
+ "' + (typeof keyCombo) + '". It must be a "string".'); }
 
 		//remove leading whitespace
 		while(s.charAt(i) === ' ') { i += 1; }
@@ -10010,20 +10012,20 @@ return jQuery;
 				while(s.charAt(i) === ' ') { i += 1; }
 				ws = true;
 			} else if(s.charAt(i) === ',') {
-				if(op || nc) { throw new Error('Failed to parse key combo. Unexpected , at character index ' + i + '.'); }
+				if(op || nc) { throw new Error('Neuspela kombinacija tastera. Neočekivano, u indeksu karaktera ' + i + '.'); }
 				nc = true;
 				i += 1;
 			} else if(s.charAt(i) === '+') {
 				//next key
 				if(key.length) { stage.push(key); key = ''; }
-				if(op || nc) { throw new Error('Failed to parse key combo. Unexpected + at character index ' + i + '.'); }
+				if(op || nc) { throw new Error('Neuspela kombinacija tastera. Neočekivan + na indeksu karaktera ' + i + '.'); }
 				op = true;
 				i += 1;
 			} else if(s.charAt(i) === '>') {
 				//next stage op
 				if(key.length) { stage.push(key); key = ''; }
 				if(stage.length) { combo.push(stage); stage = []; }
-				if(op || nc) { throw new Error('Failed to parse key combo. Unexpected > at character index ' + i + '.'); }
+				if(op || nc) { throw new Error('Neuspela kombinacija tastera. Neočekivan > na indeksu karaktera  ' + i + '.'); }
 				op = true;
 				i += 1;
 			} else if(i < s.length - 1 && s.charAt(i) === '!' && (s.charAt(i + 1) === '>' || s.charAt(i + 1) === ',' || s.charAt(i + 1) === '+')) {
@@ -10102,7 +10104,7 @@ return jQuery;
 	 * @param {String}	keyName	The key name string.
 	 */
 	function addActiveKey(keyName) {
-		if(keyName.match(/\s/)) { throw new Error('Cannot add key name ' + keyName + ' to active keys because it contains whitespace.'); }
+		if(keyName.match(/\s/)) { throw new Error('Ne možete dodati ime ključa ' + keyName + ' aktivnim tasterima jer sadrži beline.'); }
 		if(activeKeys.indexOf(keyName) > -1) { return; }
 		activeKeys.push(keyName);
 	}
@@ -10132,9 +10134,9 @@ return jQuery;
 	function registerLocale(localeName, localeMap) {
 
 		//validate arguments
-		if(typeof localeName !== 'string') { throw new Error('Cannot register new locale. The locale name must be a string.'); }
-		if(typeof localeMap !== 'object') { throw new Error('Cannot register ' + localeName + ' locale. The locale map must be an object.'); }
-		if(typeof localeMap.map !== 'object') { throw new Error('Cannot register ' + localeName + ' locale. The locale map is invalid.'); }
+		if(typeof localeName !== 'string') { throw new Error('Ne mogu da registrujem novi lokalitet. Ime Lokalno mora biti string.'); }
+		if(typeof localeMap !== 'object') { throw new Error('Ne mogu da registrujem' + localeName + ' Lokalno. Mapa Lokalno mora biti objekat.'); }
+		if(typeof localeMap.map !== 'object') { throw new Error('Ne mogu da registrujem' + localeName + ' Lokalno. Mapa Lokalno mora biti objekat.'); }
 
 		//stash the locale
 		if(!localeMap.macros) { localeMap.macros = []; }
@@ -10151,7 +10153,7 @@ return jQuery;
 		//if a new locale is given then set it
 		if(localeName) {
 			if(typeof localeName !== 'string') { throw new Error('Cannot set locale. The locale name must be a string.'); }
-			if(!locales[localeName]) { throw new Error('Cannot set locale to ' + localeName + ' because it does not exist. If you would like to submit a ' + localeName + ' locale map for KeyboardJS please submit it at https://github.com/RobertWHurst/KeyboardJS/issues.'); }
+			if(!locales[localeName]) { throw new Error('Ne možete podesiti lokalna da ' + localeName + 'jer ne postoji. Ako želite da dostavi' + localeName '); }
 
 			//set the current map and macros
 			map = locales[localeName].map;
